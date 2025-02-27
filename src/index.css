@@ -1,13 +1,35 @@
 @import "tailwindcss";
 
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@utility scrollbar-hidden {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@theme {
+  --color-*: initial;
+  --color-white: #fff;
+  --color-primary: #024B8F;
+  --color-secondary: #572A01;
+  --color-black: #0E0E0E;
+  --color-green: #1D771D;
+  --color-red: #F32C2C;
+  --color-grey: #808080;
+  --color-blue: #DDEFFF;
+  --color-lnblack: #5E5E5E;
+  --color-gray: #CFCFCF;
+}
+
+:root {
+  font-family: "Mulish", serif;
+  line-height: 1.5;
+  font-size: 16px;
+
+  /* color-scheme: light dark; */
+  /* color: rgba(255, 255, 255, 0.87); */
+  color: black;
+
+  /* background-color: #242424; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,20 +37,51 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-html {
-  overflow: scroll;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-::-webkit-scrollbar {
+*::-webkit-scrollbar {
   display: none;
-  width: 0px;
-  height: 0px;
-  background: transparent;
 }
 
-@media (prefers-color-scheme: light) {
+/* html {
+  overflow: scroll;
+} */
+
+.mulish-regular {
+  font-family: "Mulish", serif;
+  /* font-optical-sizing: auto; */
+  font-weight: 400;
+  font-style: normal;
+}
+
+.mulish-bold {
+  font-family: "Mulish", serif;
+  /* font-optical-sizing: auto; */
+  font-weight: 700;
+  font-style: normal;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.gradient {
+  background: linear-gradient(98.88deg, #FFEDCC -10.49%, #EEF7FF 114.52%);
+}
+
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
+    color: black;
     background-color: #ffffff;
   }
 
@@ -39,4 +92,4 @@ html {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
