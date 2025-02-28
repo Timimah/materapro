@@ -4,14 +4,14 @@
     "target": "ES2022",
     "lib": ["ES2023"],
     "module": "ESNext",
-    "skipLibCheck": true,
     "composite": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "Node",
+    "skipLibCheck": true,
 
     /* Bundler mode */
     "allowImportingTsExtensions": true,
     "allowSyntheticDefaultImports": true,
-    "noEmit": false,
+    "noEmit": true,
     "isolatedModules": true,
     "moduleDetection": "force",
 
