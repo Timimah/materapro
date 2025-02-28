@@ -1,11 +1,80 @@
-import Input from "@/components/shared/Input"
-import { useState } from "react"
+import { FormEvent, ChangeEvent } from "react"
 
-// pages/Contact.tsx
+interface InputProps {
+  label: string
+  placeholder?: string
+  helperText?: string
+  error?: string
+  isSuccess?: boolean
+  disabled?: boolean
+  value?: string
+  type?: string
+  required?: boolean
+  variant?: "default" | "search" | "clause"
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+  onClear?: () => void
+}
+
+const Input = ({
+  label,
+  placeholder,
+  helperText,
+  error,
+  isSuccess,
+  disabled,
+  value,
+  type = "text",
+  required,
+  variant = "default",
+  onChange,
+  onClear,
+}: InputProps) => {
+  return (
+    <div className='relative'>
+      <label className='block text-sm font-medium text-gray-700 mb-2'>
+        {label}
+      </label>
+      <input
+        type={type}
+        value={value}
+        onChange={onChange}
+        disabled={disabled}
+        required={required}
+        placeholder={placeholder}
+        className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:outline-none ${
+          error
+            ? "border-red-500 focus:ring-red-200"
+            : isSuccess
+            ? "border-green-500 focus:ring-green-200"
+            : "border-gray-300 focus:ring-blue-200"
+        }`}
+      />
+      {error && <p className='mt-1 text-sm text-red-600'>{error}</p>}
+      {helperText && !error && (
+        <p className='mt-1 text-sm text-gray-500'>{helperText}</p>
+      )}
+      {variant !== "default" && onClear && value && (
+        <button
+          type='button'
+          onClick={onClear}
+          className='absolute right-2 top-8 text-gray-400 hover:text-gray-600'
+        >
+          ×
+        </button>
+      )}
+    </div>
+  )
+}
+
 const ContactUs = () => {
-  const [searchValue, setSearchValue] = useState("")
-  const [clauseValue, setClauseValue] = useState("")
-  const [email, setEmail] = useState("")
+  // const [searchValue, setSearchValue] = useState("")
+  // const [clauseValue, setClauseValue] = useState("")
+  // const [email, setEmail] = useState("")
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault()
+    alert("Form submitted!")
+  }
 
   return (
     <div className='pt-20'>
@@ -20,29 +89,15 @@ const ContactUs = () => {
             </div>
 
             <div className='grid grid-cols-1 md:grid-cols-2 gap-12'>
-              {/* Contact Form */}
               <div className='bg-white p-6 rounded-xl shadow-sm'>
-                <form className='space-y-6'>
-                  <div>
-                    <label className='block text-sm font-medium text-gray-700 mb-2'>
-                      Name
-                    </label>
-                    <input
-                      type='text'
-                      className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent'
-                      placeholder='Your name'
-                    />
-                  </div>
-                  <div>
-                    <label className='block text-sm font-medium text-gray-700 mb-2'>
-                      Email
-                    </label>
-                    <input
-                      type='email'
-                      className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent'
-                      placeholder='Your email'
-                    />
-                  </div>
+                <form className='space-y-6' onSubmit={handleSubmit}>
+                  <Input label='Name' placeholder='Your name' required />
+                  <Input
+                    label='Email'
+                    type='email'
+                    placeholder='Your email'
+                    required
+                  />
                   <div>
                     <label className='block text-sm font-medium text-gray-700 mb-2'>
                       Message
@@ -51,6 +106,7 @@ const ContactUs = () => {
                       className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent'
                       rows={6}
                       placeholder='Your message'
+                      required
                     ></textarea>
                   </div>
                   <button
@@ -62,7 +118,6 @@ const ContactUs = () => {
                 </form>
               </div>
 
-              {/* Contact Information */}
               <div className='space-y-8'>
                 <div>
                   <h3 className='text-xl font-semibold mb-4'>
@@ -101,148 +156,6 @@ const ContactUs = () => {
           </div>
         </div>
       </section>
-      <div className='space-y-8 p-6 max-w-2xl mx-auto'>
-        {/* Basic Input */}
-        <div>
-          <h2 className='text-lg font-semibold mb-4'>General Input Examples</h2>
-          <div className='space-y-4'>
-            {/* Default */}
-            <Input label='Default Input' placeholder='Enter your name' />
-
-            {/* With Helper Text */}
-            <Input
-              label='With Helper Text'
-              placeholder='Enter username'
-              helperText='This will be your public display name'
-            />
-
-            {/* With Error */}
-            <Input
-              label='Error State'
-              value='invalid@email'
-              error='Please enter a valid email address'
-            />
-
-            {/* Success State */}
-            <Input label='Success State' value='valid@email.com' isSuccess />
-
-            {/* Disabled State */}
-            <Input label='Disabled Input' value='Cannot edit this' disabled />
-          </div>
-        </div>
-
-        {/* Search Input Examples */}
-        <div>
-          <h2 className='text-lg font-semibold mb-4'>Search Input Examples</h2>
-          <div className='space-y-4'>
-            {/* Default Search */}
-            <Input
-              variant='search'
-              label='Search'
-              placeholder='Search items...'
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-              onClear={() => setSearchValue("")}
-            />
-
-            {/* Disabled Search */}
-            <Input
-              variant='search'
-              label='Disabled Search'
-              value='Locked search'
-              disabled
-            />
-
-            {/* Search with Error */}
-            <Input
-              variant='search'
-              label='Search with Error'
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-              onClear={() => setSearchValue("")}
-              error='No results found'
-            />
-          </div>
-        </div>
-
-        {/* Clause Form Examples */}
-        <div>
-          <h2 className='text-lg font-semibold mb-4'>Clause Form Examples</h2>
-          <div className='space-y-4'>
-            {/* Default Clause */}
-            <Input
-              variant='clause'
-              label='Clause Input'
-              placeholder='Add clause...'
-              value={clauseValue}
-              onChange={(e) => setClauseValue(e.target.value)}
-              onClear={() => setClauseValue("")}
-            />
-
-            {/* Clause with Error */}
-            <Input
-              variant='clause'
-              label='Clause with Error'
-              value='Invalid clause'
-              error='This clause already exists'
-              onClear={() => setClauseValue("")}
-            />
-          </div>
-        </div>
-
-        {/* Form Example */}
-        <div>
-          <h2 className='text-lg font-semibold mb-4'>Form Example</h2>
-          <form
-            className='space-y-4'
-            onSubmit={(e) => {
-              e.preventDefault()
-              alert("Form submitted!")
-            }}
-          >
-            <Input
-              label='Email Address'
-              type='email'
-              placeholder='Enter your email'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-
-            <Input
-              label='Password'
-              type='password'
-              placeholder='Enter your password'
-              required
-            />
-
-            <button
-              type='submit'
-              className='bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600'
-            >
-              Submit
-            </button>
-          </form>
-        </div>
-
-        {/* Real-time Validation Example */}
-        <div>
-          <h2 className='text-lg font-semibold mb-4'>Real-time Validation</h2>
-          <Input
-            label='Email Validation'
-            type='email'
-            placeholder='Enter email to validate'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            error={
-              email && !email.includes("@")
-                ? "Please enter a valid email address"
-                : undefined
-            }
-            isSuccess={email && email.includes("@")}
-          />
-        </div>
-      </div>
     </div>
   )
 }
