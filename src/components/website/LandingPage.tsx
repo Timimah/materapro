@@ -4,7 +4,7 @@ import Why1 from "@assets/home1.jpeg"
 import Why2 from "@assets/home2.jpeg"
 import Apart1 from "@assets/home3.jpeg"
 import Apart2 from "@assets/home4.jpeg"
-import Support from "@assets/amico.png"
+import FAQSection from "./FAQSection"
 
 const LandingPage = () => {
   const heroRef = useRef(null)
@@ -77,27 +77,6 @@ const LandingPage = () => {
       title: "Transparency & Quality",
       description: "Ensure project success with our vetted workers",
       icon: "✅",
-    },
-  ]
-
-  const faqs = [
-    {
-      question: "What is our platform and what services do we render?",
-      answer:
-        "We are a digital platform providing procurement of construction materials and a showroom for excellent workers, empowering the construction industry through seamless collaboration and efficient processes.",
-    },
-    {
-      question: "How do I register as a client or worker?",
-      answer: "Registration process information would go here.",
-    },
-    {
-      question:
-        "What are the benefits of using our platform for construction material procurement?",
-      answer: "Benefits information would go here.",
-    },
-    {
-      question: "Can I trust the workers listed on our showroom?",
-      answer: "Worker verification information would go here.",
     },
   ]
 
@@ -222,43 +201,9 @@ const LandingPage = () => {
       </motion.section>
 
       {/* FAQ Section */}
-      <motion.section
-        ref={faqRef}
-        initial='initial'
-        animate={isFaqInView ? "animate" : "initial"}
-        variants={fadeInUp}
-        className='mx-60 flex flex-col gap-6 h-screen'
-      >
-        <div className='flex flex-col gap-2'>
-          <p className='text-3xl font-extrabold text-black mb-8'>
-            We have 24/7 Support Available
-          </p>
-          <p className='text-sm'>Get answers to your questions.</p>
-        </div>
-        <div className='flex justify-between items-center'>
-          <div className='w-1/2'>
-            <img src={Support} alt='Support image' className='object-cover' />
-          </div>
-          <div className='space-y-4 w-1/2'>
-            {faqs.map((faq, index) => (
-              <motion.div
-                key={index}
-                className=''
-                initial={{ opacity: 0, y: 20 }}
-                animate={
-                  isFaqInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-                }
-                transition={{ delay: index * 0.1 }}
-              >
-                <h3 className='text-xl text-black font-bold py-8'>
-                  {faq.question}
-                </h3>
-                <p className='text-sm'>{faq.answer}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
+      <motion.div ref={faqRef}>
+        <FAQSection inView={isFaqInView} />
+      </motion.div>
     </div>
   )
 }
