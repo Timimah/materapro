@@ -11,6 +11,7 @@
     /* Bundler mode */
     "allowImportingTsExtensions": true,
     "allowSyntheticDefaultImports": true,
+    "noEmit": false,
     "isolatedModules": true,
     "moduleDetection": "force",
 
