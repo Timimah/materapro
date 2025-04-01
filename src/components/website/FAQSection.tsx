@@ -48,21 +48,21 @@ const FAQSection = ({ inView }: FAQSectionProps) => {
         initial: { opacity: 0 },
         animate: { opacity: 1 },
       }}
-      className='mx-60 flex flex-col justify-center gap-6 h-screen py-16'
+      className='mx-8 md:mx-18 flex flex-col md:justify-center gap-6 h-screen py-10 mb-20'
     >
       <div className='flex flex-col gap-2 mb-8'>
-        <h2 className='text-3xl font-extrabold text-black'>
+        <h2 className='text-2xl md:text-3xl text-left font-extrabold text-black'>
           We have 24/7 Support Available
         </h2>
         <p className='text-sm text-gray-600'>Get answers to your questions.</p>
       </div>
 
-      <div className='flex justify-between'>
-        <div className='w-1/2'>
+      <div className='flex md:flex-row flex-col justify-between'>
+        <div className='md:w-1/2 px-10 md:px-0'>
           <img src={Support} alt='Support' />
         </div>
 
-        <div className='w-1/2 h-[30em] overflow-y-auto'>
+        <div className='md:w-1/2 h-[30em] overflow-y-auto'>
           {faqs.map((faq, index) => (
             <Accordion
               key={index}

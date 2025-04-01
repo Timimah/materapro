@@ -1,248 +1,88 @@
-import { FormEvent, ChangeEvent } from "react"
-
-interface InputProps {
-  label: string
-  placeholder?: string
-  helperText?: string
-  error?: string
-  isSuccess?: boolean
-  disabled?: boolean
-  value?: string
-  type?: string
-  required?: boolean
-  variant?: "default" | "search" | "clause"
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
-  onClear?: () => void
-}
-
-const Input = ({
-  label,
-  placeholder,
-  helperText,
-  error,
-  isSuccess,
-  disabled,
-  value,
-  type = "text",
-  required,
-  variant = "default",
-  onChange,
-  onClear,
-}: InputProps) => {
-  return (
-    <div className='relative'>
-      <label className='block text-sm font-medium text-gray-700 mb-2'>
-        {label}
-      </label>
-      <input
-        type={type}
-        value={value}
-        onChange={onChange}
-        disabled={disabled}
-        required={required}
-        placeholder={placeholder}
-        className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:outline-none ${
-          error
-            ? "border-red-500 focus:ring-red-200"
-            : isSuccess
-            ? "border-green-500 focus:ring-green-200"
-            : "border-gray-300 focus:ring-blue-200"
-        }`}
-      />
-      {error && <p className='mt-1 text-sm text-red-600'>{error}</p>}
-      {helperText && !error && (
-        <p className='mt-1 text-sm text-gray-500'>{helperText}</p>
-      )}
-      {variant !== "default" && onClear && value && (
-        <button
-          type='button'
-          onClick={onClear}
-          className='absolute right-2 top-8 text-gray-400 hover:text-gray-600'
-        >
-          ×
-        </button>
-      )}
-    </div>
-  )
-}
+import { motion, useInView } from "framer-motion"
+import FAQSection from "@/components/website/FAQSection"
+import { useRef } from "react"
+import { contactDetails } from "@/components/website/data"
+import ContactForm from "@/components/website/ContactForm"
 
 const ContactUs = () => {
-  // const [searchValue, setSearchValue] = useState("")
-  // const [clauseValue, setClauseValue] = useState("")
-  // const [email, setEmail] = useState("")
+  const faqRef = useRef(null)
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault()
-    alert("Form submitted!")
+  const viewConfig = { amount: 0.3, once: true }
+
+  const isFaqInView = useInView(faqRef, viewConfig)
+  const cardAnimation = {
+    hidden: { opacity: 0, scale: 0.8, y: 20 },
+    show: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        bounce: 0.4,
+        duration: 2,
+      },
+    },
+    hover: {
+      scale: 1.05,
+      transition: { duration: 0.3 },
+    },
   }
 
   return (
-    <div className='pt-20'>
-      <section className='py-20'>
-        <div className='container mx-auto px-4'>
-          <div className='max-w-4xl mx-auto'>
-            <div className='text-center mb-12'>
-              <h1 className='text-4xl font-bold mb-4'>Contact Us</h1>
-              <p className='text-gray-600'>
-                Get in touch with us for any questions or concerns
-              </p>
-            </div>
-
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-12'>
-              <div className='bg-white p-6 rounded-xl shadow-sm'>
-                <form className='space-y-6' onSubmit={handleSubmit}>
-                  <Input label='Name' placeholder='Your name' required />
-                  <Input
-                    label='Email'
-                    type='email'
-                    placeholder='Your email'
-                    required
-                  />
-                  <div>
-                    <label className='block text-sm font-medium text-gray-700 mb-2'>
-                      Message
-                    </label>
-                    <textarea
-                      className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent'
-                      rows={6}
-                      placeholder='Your message'
-                      required
-                    ></textarea>
-                  </div>
-                  <button
-                    type='submit'
-                    className='w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition'
-                  >
-                    Send Message
-                  </button>
-                </form>
-              </div>
-
-              <div className='space-y-8'>
-                <div>
-                  <h3 className='text-xl font-semibold mb-4'>
-                    Office Location
-                  </h3>
-                  <p className='text-gray-600'>
-                    123 Construction Avenue
-                    <br />
-                    Building District, CT 12345
-                    <br />
-                    United States
-                  </p>
+    <section className='mx-aut0 text-lnblack'>
+      <section className='bg-blue relative w-full flex flex-col md:h-[55em] py-40 -z-10'>
+        <div className='w-full text-center flex flex-col gap-5 items-center py-20'>
+          <p className='text-2xl md:text-5xl text-black font-extrabold'>
+            Get in Touch
+          </p>
+          <p className='md:w-[55em] text-sm md:text-lg px-8 md:px-0'>
+            Have an idea or project you'd like to discuss? Our team is eager to
+            collaborate and bring your vision to life.
+          </p>
+        </div>
+        <div className='bg-white flex flex-col gap-8 rounded-2xl py-5 mx-8 md:mx-18 px-5 shadow-sm'>
+          <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6'>
+            {contactDetails.map((contact, index) => (
+              <motion.div
+                key={index}
+                className='flex flex-col gap-2 text-left gradient p-5 rounded-lg hover:shadow-lg hover:border hover:border-grey/50'
+                initial='hidden'
+                whileInView='show'
+                viewport={{ once: false }}
+                variants={cardAnimation}
+                whileHover='hover'
+              >
+                <div className='rounded-full bg-white w-15 h-15 flex justify-center items-center'>
+                  {contact.icon}
                 </div>
-                <div>
-                  <h3 className='text-xl font-semibold mb-4'>Contact Info</h3>
-                  <p className='text-gray-600'>
-                    Email: info@masteropro.com
-                    <br />
-                    Phone: +1 (555) 123-4567
-                    <br />
-                    Support: 24/7 Available
-                  </p>
-                </div>
-                <div>
-                  <h3 className='text-xl font-semibold mb-4'>Business Hours</h3>
-                  <p className='text-gray-600'>
-                    Monday - Friday: 9:00 AM - 6:00 PM
-                    <br />
-                    Saturday: 10:00 AM - 4:00 PM
-                    <br />
-                    Sunday: Closed
-                  </p>
-                </div>
-              </div>
-            </div>
+                <h3 className='font-bold text-black mb-2'>{contact.title}</h3>
+                <p className='text-gray-600'>{contact.description}</p>
+                <p className='pt-5     text-primary font-bold underline'>
+                  {contact.details}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
-    </div>
+      <section>
+        <div className='bg-white flex flex-col justify-center items-center border border-gray p-1 rounded-2xl mx-8 md:mx-50 shadow-md -mt-15 pt-20'>
+          <div className='flex flex-col gap-3 text-center'>
+            <p className='text-black font-extrabold text-2xl md:text-3xl'>
+              Message Us
+            </p>
+            <p>We'll get back to you within 24 Hours</p>
+          </div>
+          <div className='flex w-full px-8 md:px-25 pt-10'>
+            <ContactForm />
+          </div>
+        </div>
+      </section>
+      <motion.div ref={faqRef} className='py-10'>
+        <FAQSection inView={isFaqInView} />
+      </motion.div>
+    </section>
   )
 }
 
 export default ContactUs
-
-// import * as React from "react";
-// import { useState } from "react";
-// import { motion, AnimatePresence } from "framer-motion";
-// import { ContentPlaceholder } from "./ContentPlaceholder";
-
-// const Accordion = ({ i, expanded, setExpanded }) => {
-//   const isOpen = i === expanded;
-
-//   // By using `AnimatePresence` to mount and unmount the contents, we can animate
-//   // them in and out while also only rendering the contents of open accordions
-//   return (
-//     <>
-//       <motion.header
-//         initial={false}
-//         animate={{ backgroundColor: isOpen ? "#FF0088" : "#0055FF" }}
-//         onClick={() => setExpanded(isOpen ? false : i)}
-//       />
-//       <AnimatePresence initial={false}>
-//         {isOpen && (
-//           <motion.section
-//             key="content"
-//             initial="collapsed"
-//             animate="open"
-//             exit="collapsed"
-//             variants={{
-//               open: { opacity: 1, height: "auto" },
-//               collapsed: { opacity: 0, height: 0 }
-//             }}
-//             transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
-//           >
-//             <ContentPlaceholder />
-//           </motion.section>
-//         )}
-//       </AnimatePresence>
-//     </>
-//   );
-// };
-
-// export const Example = () => {
-//   // This approach is if you only want max one section open at a time. If you want multiple
-//   // sections to potentially be open simultaneously, they can all be given their own `useState`.
-//   const [expanded, setExpanded] = useState<false | number>(0);
-
-//   return accordionIds.map((i) => (
-//     <Accordion i={i} expanded={expanded} setExpanded={setExpanded} />
-//   ));
-// };
-
-// const accordionIds = [0, 1, 2, 3];
-
-// import * as React from "react";
-// import { motion } from "framer-motion";
-// import { mix } from "@popmotion/popcorn";
-
-// const randomInt = (min, max) => Math.round(mix(min, max, Math.random()));
-// const generateParagraphLength = () => randomInt(5, 20);
-// const generateWordLength = () => randomInt(20, 100);
-
-// // Randomly generate some paragraphs of word lengths
-// const paragraphs = [...Array(3)].map(() => {
-//   return [...Array(generateParagraphLength())].map(generateWordLength);
-// });
-
-// export const Word = ({ width }) => <div className="word" style={{ width }} />;
-
-// const Paragraph = ({ words }) => (
-//   <div className="paragraph">
-//     {words.map(width => (
-//       <Word width={width} />
-//     ))}
-//   </div>
-// );
-
-// export const ContentPlaceholder = () => (
-//   <motion.div
-//     variants={{ collapsed: { scale: 0.8 }, open: { scale: 1 } }}
-//     transition={{ duration: 0.8 }}
-//     className="content-placeholder"
-//   >
-//     {paragraphs.map(words => (
-//       <Paragraph words={words} />
-//     ))}
-//   </motion.div>
-// );

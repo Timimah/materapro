@@ -1,3 +1,4 @@
+// export default Footer
 import React from "react"
 import { motion } from "framer-motion"
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa"
@@ -37,64 +38,64 @@ const Footer = () => {
   ]
 
   return (
-    <footer className='relative h-screen flex items-end'>
-      <div className='bg-blue mx-auto h-[30em] px-60 w-full flex flex-col'>
-        <div className='flex bg-white border border-gray p-4 rounded-2xl h-[30em] left-0 right-0 absolute mx-60 bottom-50'>
+    <footer className='relative mt-60 md:mt-50'>
+      <div className='bg-blue md:px-18 w-full flex justify-between flex-col'>
+        <div className='flex relative bg-white border border-gray p-1 rounded-2xl h-[20em] md:h-[30em] mx-8 md:mx-18 -mt-30 md:-mt-50'>
           <img
             src={Footerimg}
             alt='Footer image'
-            className='rounded-xl object-cover h-full w-full'
+            className='relative rounded-xl object-cover h-full w-full'
           />
-          <div className='bg-black/30 absolute inset-0 text-white text-center text-4xl flex items-center justify-center rounded-xl font-extrabold px-80'>
+          <div className='bg-black/30 absolute inset-0 text-white text-center text-2xl md:text-4xl flex items-center justify-center rounded-xl font-extrabold px-10 md:px-80'>
             Transforming the Construction Industry with Digital Innovation.
           </div>
         </div>
-        <div className='items-end flex h-full'>
+        <div className='flex justify-center md:py-17 w-full'>
           {/* Logo Section */}
-          <div className='flex items-center w-full gap-20 text-xs'>
-            <div className='flex flex-col items-end'>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <img
-                  src={logo}
-                  alt='MateraPro Logo'
-                  className='w-60 h-60 object-cover'
-                />
-              </motion.div>
-            </div>
+          <div className='flex flex-col md:flex-row md:gap-20 items-center text-xs'>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <img
+                src={logo}
+                alt='MateraPro Logo'
+                className='w-40 h-30 md:w-60 md:h-40 object-cover'
+              />
+            </motion.div>
 
             {/* Links Sections */}
-            {footerLinks.map((section, index) => (
-              <motion.div
-                key={section.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className='flex flex-col gap-5'
-              >
-                <p className='font-bold'>{section.title}</p>
-                <ul className='flex flex-col gap-3'>
-                  {section.links.map((link) => (
-                    <li key={link.text}>
-                      <a
-                        href={link.href}
-                        className='hover:text-primary transition-colors'
-                      >
-                        {link.text}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
+            <div className='flex gap-6 md:gap-30 pb-10 mb:py-0 w-full'>
+              {footerLinks.map((section, index) => (
+                <motion.div
+                  key={section.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className='flex flex-col gap-4 md:gap-5'
+                >
+                  <p className='font-bold'>{section.title}</p>
+                  <ul className='flex flex-col gap-3 md:gap-3'>
+                    {section.links.map((link) => (
+                      <li key={link.text}>
+                        <a
+                          href={link.href}
+                          className='hover:text-primary transition-colors'
+                        >
+                          {link.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              ))}
+            </div>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className='flex flex-col justify-between gap-4 text-xs'
+              className='flex flex-col justify-between gap-4 text-xs pb-10 md:pb-0'
             >
               <p className='font-bold'>© 2024 MateraPro. All rigts reserved.</p>
 
