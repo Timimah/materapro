@@ -2,7 +2,7 @@
 import React from "react"
 import { motion } from "framer-motion"
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa"
-import Footerimg from "@assets/home5.jpeg"
+import Footerimg from "@assets/home5.webp"
 import logo from "@assets/logo.png"
 
 const Footer = () => {
