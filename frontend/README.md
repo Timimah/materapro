@@ -1,0 +1,1 @@
+This is the React (Vite) frontend of the MateraPro platform.

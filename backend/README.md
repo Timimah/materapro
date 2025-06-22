@@ -1,0 +1,1 @@
+This is the Django + DRF backend of the MateraPro platform.
