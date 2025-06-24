@@ -1,91 +1,75 @@
-# 📦 MateraPro
+# MateraPro 🛒✨
 
-MateraPro is a multi-role digital marketplace designed to connect clients with verified suppliers and skilled artisans. It aims to streamline material sourcing and service contracting across local economies.
-
-## 🚀 MVP Overview
-
-The MVP focuses on building a lean platform with three core roles:
-
-* **Clients**: Browse and request materials or services
-* **Suppliers**: Upload and manage product listings
-* **Artisans**: Showcase and offer skilled labor
-
-### Core Features
-
-* Multi-role user authentication & registration
-* In-app chat for transaction coordination
-* Listings: Create, browse, filter materials or services
-* Escrow-style payment and delivery logic
-* Responsive UI for mobile and desktop use
+**MateraPro** is a scalable, secure multi-role marketplace platform that connects clients, suppliers, and artisans to streamline the procurement of goods and services. Built with a modern stack and a strong focus on performance, MateraPro enables seamless transactions, escrow payments, and real-time messaging — all from a unified web experience.
 
 ---
 
-## 📁 Project Structure
+## 🚀 Features
+
+- 🔐 **Multi-role Access** – Different dashboards and capabilities for clients, suppliers, and artisans.
+- 💬 **In-App Messaging** – Real-time chat between buyers and sellers.
+- 💳 **Escrow Payments** – Secure transactions with dispute resolution logic.
+- 📦 **Listings & Orders** – Suppliers/artisans can create and manage offerings.
+- 📈 **Analytics-ready** – Designed for future insights and smart features.
+- ⚙️ **API-first Architecture** – Headless backend with RESTful endpoints.
+
+---
+
+## 🏗 Tech Stack
+
+| Layer        | Technology                                         |
+| ------------ | -------------------------------------------------- |
+| **Frontend** | React (Vite), Tailwind CSS                         |
+| **Backend**  | Django, Django REST Framework                      |
+| **Database** | PostgreSQL                                         |
+| **Auth**     | JWT-based authentication                           |
+| **Others**   | GitHub Actions, Docker (planned), Stripe (planned) |
+
+---
+
+## 📂 Repository Structure
 
 ```
 MateraPro/
-├── backend/        # Django backend
-├── frontend/       # React frontend
-├── .github/        # Templates and workflows
-└── docs/           # Project documentation
+│
+├── backend/        # Django backend (API)
+├── frontend/       # React frontend (web client)
+├── .github/        # GitHub workflows, templates, configs
+├── .gitignore
+├── README.md       # You’re here
+└── CONTRIBUTING.md # Contributor guidelines
 ```
 
 ---
 
-## 🛠 Tech Stack
+## 🧑‍💻 Getting Started
 
-* **Frontend**: React (Vite)
-* **Backend**: Django + DRF
-* **Database**: PostgreSQL
-* **CI/CD**: GitHub Actions
-* **Others**: Docker (future), Redis (optional)
+To get started locally, clone the repo and refer to:
 
----
-
-## 📌 Getting Started
-
-### Prerequisites
-
-* Node.js & npm/yarn
-* Python 3.10+
-* PostgreSQL
-
-### Clone the Repo
-
-```bash
-git clone https://github.com/MateraPro/MateraPro.git
-cd MateraPro
-```
-
-### Setup Backend
-
-```bash
-cd backend
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
-```
-
-### Setup Frontend
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
+- [backend/README.md](backend/README.md) — API setup and instructions
+- [frontend/README.md](frontend/README.md) — Web client setup and build
 
 ---
 
 ## 🤝 Contributing
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md)
+Contributions are welcome and appreciated! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) to get started with our guidelines and workflow.
 
 ---
 
 ## 📄 License
 
-This project is currently proprietary to MateraPro and not under an open-source license.
+This project is proprietary software owned by the MateraPro team. All rights reserved.
 
-## 📬 Contact
+---
 
-For partnership or collaboration inquiries: _________
+## 🌍 Contact & Community
+
+For questions or collaboration:
+
+- Email: [materapro.team@gmail.com](mailto:materapro.team@gmail.com)
+- GitHub Discussions: [MateraPro Discussions](https://github.com/MateraPro/MateraPro/discussions) (if enabled)
+
+---
+
+> _Empowering local economies through seamless trade and smart technology._ 💡

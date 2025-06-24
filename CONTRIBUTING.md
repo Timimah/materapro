@@ -1,42 +1,165 @@
-# 🤝 CONTRIBUTING to MateraPro
+# 🤝 Contributing to MateraPro
 
-Thank you for your interest in contributing! This document outlines how to collaborate effectively with the team.
+Welcome! We're excited that you're interested in contributing to **MateraPro** — a multi-role marketplace platform built for scale, speed, and security. Whether you're fixing bugs, improving documentation, or building new features, your input helps us improve.
 
-## 🔍 How to Contribute
+---
 
-* **Pick an Issue**: Start with [`good first issue`](https://github.com/MateraPro/MateraPro/labels/good%20first%20issue) or `help wanted` tags
-* **Comment First**: Let others know you're working on it
-* **Fork and Clone**: Create your own branch off `dev`
+## 📦 Project Structure
+
+MateraPro is a monorepo with:
+
+- **backend/** — Django REST API
+- **frontend/** — React (Vite) web client
+
+---
+
+## 🛠️ Getting Started
+
+### 1. Clone Repository
 
 ```bash
-git checkout -b feature/your-task-name
+git clone git@github.com:<your-username>/MateraPro.git
+cd MateraPro
 ```
 
-## 🛠 Coding Standards
+### 2. Set Up Your Environment
 
-* Follow PEP8 for Python
-* Use Prettier/ESLint for frontend code
-* Keep commits clear and atomic
+- Backend setup: see [backend/README.md](backend/README.md)
+- Frontend setup: see [frontend/README.md](frontend/README.md)
 
-## ✅ Pull Requests
+### 3. Create a Branch
 
-* Always link the issue: `Closes #issue-number`
-* PRs must pass CI tests before merging
-* At least one team member review is required
+```bash
+git checkout -b feature/your-feature-name dev
+```
 
-## 🧪 Testing
+---
 
-* Backend: Use Django's test framework
-* Frontend: Unit tests via Jest (if available)
+## 🌿 Branching Strategy
 
-## 📁 Folder Conventions
+We follow a **feature-branch** strategy to maintain a clean and stable `main` branch.
 
-* `backend/`: Django project and apps
-* `frontend/`: React components, routes, services
+### 📌 Branch Types:
 
-## 🧭 Communication
+- `main` — stable, production-ready code
+- `dev` — integration branch for active development
+- `feature/<name>` — new features
+- `bugfix/<name>` — non-critical bug fixes
+- `hotfix/<name>` — urgent production fixes
 
-Use GitHub Discussions or assigned issues to coordinate efforts.
+### 🗭 Workflow:
 
-Thank you for making MateraPro better!
-# MateraPro
+1. Branch from `dev`
+2. Commit your changes regularly (see commit strategy below)
+3. Push to your remote branch
+4. Open a Pull Request (PR) to `dev`
+5. After thorough testing, merge `dev` to `main`
+
+---
+
+## 💬 Commit Strategy
+
+Use conventional, semantic messages:
+
+```
+type(scope): short description [(#<issue tag>) if applicable]
+```
+
+Examples:
+
+- `feat(api): implement role-based auth`
+- `fix(cart): prevent double-charging`
+- `docs: update README`
+
+### Types:
+
+- `feat:` — new feature
+- `fix:` — bug fix
+- `docs:` — documentation only
+- `style:` — formatting, missing semi-colons, etc.
+- `refactor:` — code restructuring without behavior change
+- `test:` — adding or correcting tests
+- `chore:` — maintenance tasks (deps, configs, etc.)
+
+### Best Practices:
+
+- Keep commits atomic and clear
+- Use present tense ("add", not "added")
+- Reference issues with `#<number>` (e.g. `#23`)
+- **Prefer linking issues in PR descriptions**, not just in commits, for clearer context and automation
+
+---
+
+## 🔃 Push & Pull Best Practices
+
+### Pull Before Work
+
+```bash
+git checkout dev
+git pull origin dev
+```
+
+### Push Feature
+
+```bash
+git checkout -b feature/your-feature-name
+git add .
+git commit -m "feat(...): your message"
+git push origin feature/your-feature-name
+```
+
+### Merge Process
+
+- Open PR against `dev`
+- Request review
+- Rebase with `dev` if needed
+- Merge after approval and CI pass
+
+---
+
+## 📋 Issue Workflow
+
+- Create descriptive issues
+- Assign proper labels (e.g. `frontend`, `backend`, `bug`, `enhancement`)
+- Reference related issues/PRs with `Closes #ID`
+
+---
+
+## 🔧 Code Style
+
+- **Python:** PEP8, `flake8`, `black`
+- **JavaScript/TypeScript:** Prettier, ESLint
+- Lint and format before committing
+
+---
+
+## 🕪 Testing
+
+- Write tests for all new features/bugfixes
+- Keep tests clear and scoped
+- Ensure all tests pass before opening a PR
+
+---
+
+## 🛄 Pull Requests
+
+- Base PRs on `dev`
+- Use semantic titles and meaningful descriptions
+- Include screenshots for UI changes (optional)
+- Use `Closes #<issue-id>` in PR descriptions to link issues
+- Ensure CI passes and reviewers are tagged
+
+---
+
+## 👥 Code of Conduct
+
+We follow the [Contributor Covenant](https://www.contributor-covenant.org/version/2/1/code_of_conduct/).
+Be respectful, inclusive, and collaborative.
+
+---
+
+## 🙋 Need Help?
+
+- GitHub Discussions: [MateraPro Discussions](https://github.com/MateraPro/MateraPro/discussions)
+
+Thank you for contributing to MateraPro 💙
