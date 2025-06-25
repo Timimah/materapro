@@ -11,7 +11,7 @@ interface AccordionProps {
 
 const Accordion = ({ question, answer, isOpen, onClick }: AccordionProps) => {
   return (
-    <div className='flex flex-col gap-2 py-6'>
+    <div className='flex flex-col gap-2'>
       <motion.header
         initial={false}
         className={`flex justify-between items-center py-4 cursor-pointer ${
