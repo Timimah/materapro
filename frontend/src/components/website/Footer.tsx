@@ -24,8 +24,8 @@ const Footer = () => {
     {
       title: "Contact us",
       links: [
-        { text: "matera@gmail.com", href: "mailto:matera@gmail.com" },
-        { text: "+234 913 5029 688", href: "tel:+2349135029688" },
+        { text: "matera@gmail.com", href: "mailto:Materapro04@gmail.com" },
+        { text: "+234 816 1162 488", href: "tel:+2348161162488" },
       ],
     },
     {
