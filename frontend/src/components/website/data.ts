@@ -21,6 +21,58 @@ export const services = [
   },
 ]
 
+export const faqs = [
+  {
+    question: "What does MateraPro offer?",
+    answer:
+      "MateraPro is a digital marketplace that brings together everyone involved in construction — professionals, vendors, and suppliers — in one seamless and trustworthy platform. It helps you access real-time material prices and make smarter cost predictions for your projects.",
+  },
+  {
+    question: "Why should I use MateraPro?",
+    answer:
+      "Whether you're a construction company, supplier, engineer, architect, artisan, or just someone needing building materials or services — MateraPro saves you time, cuts down costs, and takes the stress out of sourcing and procurement.",
+  },
+  {
+    question: " How do I register on MateraPro?",
+    answer:
+      "Simply click the “Sign Up” button, choose your role (vendor, contractor, individual/client), fill in your details, and verify your email to get started.",
+  },
+  {
+    question: " Is MateraPro free to use?",
+    answer: "Yes! Signing up and exploring MateraPro is completely free.",
+  },
+  {
+    question: "How do I make a purchase on MateraPro?",
+    answer:
+      "Log into your account, search for materials or services by location or type, review the supplier and product details, add items to your cart, and make a secure payment using our integrated payment system.",
+  },
+  {
+    question: "What payment methods are accepted?",
+    answer:
+      "We accept all major debit and credit cards, as well as bank transfers — all powered securely through Paystack.",
+  },
+  {
+    question: "What happens if there’s a dispute?",
+    answer:
+      "Don’t worry — we’ve got you. Use the Resolution Center on your dashboard to submit a complaint, or reach out to our support team directly for help.",
+  },
+  {
+    question: "Can I list my construction business or materials on MateraPro?",
+    answer:
+      "Absolutely! If you’re a vendor or service provider, you can create a business profile and upload your products or services straight from your dashboard.",
+  },
+  {
+    question: " Is my information safe on MateraPro?",
+    answer:
+      "Yes. We use top-tier encryption and security measures to keep your personal and financial data protected.                  ",
+  },
+  {
+    question: " How can I contact customer support?",
+    answer:
+      "You can reach us anytime at support@materapro.com or by using the live chat feature on our website.",
+  },
+]
+
 export const contactDetails = [
   {
     title: "Call us",
