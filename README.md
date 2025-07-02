@@ -67,8 +67,7 @@ This project is proprietary software owned by the MateraPro team. All rights res
 
 For questions or collaboration:
 
-- Email: [materapro.team@gmail.com](mailto:materapro.team@gmail.com)
-- GitHub Discussions: [MateraPro Discussions](https://github.com/MateraPro/MateraPro/discussions) (if enabled)
+- GitHub Discussions: [MateraPro Discussions](https://github.com/MateraPro/MateraPro/discussions)
 
 ---
 
