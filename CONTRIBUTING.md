@@ -67,8 +67,8 @@ type(scope): short description [(#<issue tag>) if applicable]
 
 Examples:
 
-- `feat(api): implement role-based auth`
-- `fix(cart): prevent double-charging`
+- `feat(api): implement role-based auth (#3)`
+- `fix(cart): prevent double-charging (#12)`
 - `docs: update README`
 
 ### Types:
