@@ -17,8 +17,8 @@ const Footer = () => {
     {
       title: "About us",
       links: [
-        { text: "Mission Statement", href: "#" },
-        { text: "Values", href: "#" },
+        { text: "Mission Statement", href: "about" },
+        { text: "Values", href: "about" },
       ],
     },
     {
@@ -32,7 +32,7 @@ const Footer = () => {
       title: "Help & Support",
       links: [
         { text: "FAQS", href: "faqs" },
-        { text: "Privacy Policy", href: "#" },
+        { text: "Privacy Policy", href: "privacy-policy" },
       ],
     },
   ]
@@ -46,7 +46,7 @@ const Footer = () => {
             alt='Footer image'
             className='relative rounded-xl object-cover h-full w-full'
           />
-          <div className='bg-black/30 absolute inset-0 text-white text-center text-2xl md:text-4xl flex items-center justify-center rounded-xl font-extrabold px-10 md:px-80'>
+          <div className='bg-black/30 absolute inset-0 text-white text-center text-2xl md:text-4xl flex items-center justify-center rounded-xl font-extrabold my-1 mx-1 px-10 md:px-80'>
             Transforming the Construction Industry with Digital Innovation.
           </div>
         </div>
@@ -73,7 +73,7 @@ const Footer = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className='flex flex-col gap-4 md:gap-5'
+                  className='flex flex-col gap-4 md:gap-5 mx-2'
                 >
                   <p className='font-bold'>{section.title}</p>
                   <ul className='flex flex-col gap-3 md:gap-3'>
