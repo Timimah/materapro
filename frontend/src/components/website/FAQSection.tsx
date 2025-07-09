@@ -19,7 +19,7 @@ const FAQSection = ({ inView }: FAQSectionProps) => {
         initial: { opacity: 0 },
         animate: { opacity: 1 },
       }}
-      className='mx-8 md:mx-18 flex flex-col md:justify-center gap-6 h-screen py-10 mb-20'
+      className='mx-8 md:mx-18 flex flex-col md:justify-center gap-6 min-h-screen pt-10'
     >
       <div className='flex flex-col gap-2 mb-8'>
         <h2 className='text-2xl md:text-3xl text-left font-extrabold text-black'>
