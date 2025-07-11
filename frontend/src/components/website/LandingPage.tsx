@@ -29,8 +29,8 @@ const LandingPage = () => {
         animate={isHeroInView ? "animate" : "initial"}
         variants={fadeInUp}
       >
-        <div className='flex flex-col md:flex-row items-center justify-between gap-8 md:gap-20 h-screen md:py-100 py-20'>
-          <div className='h-full flex flex-col justify-center md:justify-start flex-1/3 px-8 md:px-0 md:-ml-20'>
+        <div className='flex flex-col md:flex-row items-center justify-between gap-8 md:gap-20 min-h-screen md:h-screen md:py-100 py-20'>
+          <div className='md:h-full flex flex-col justify-center md:justify-start flex-1/3 px-8 md:px-0 md:-ml-20'>
             <img
               src={Why1}
               alt=''
@@ -97,18 +97,18 @@ const LandingPage = () => {
           {companyInfo.whatSetsUsApart}
         </p>
         <div className='h-60 flex items-center md:my-20'>
-          <div className='-rotate-12 flex items-center justify-center w-32 h-32 md:w-52 md:h-52 bg-white rounded-2xl border border-gray shadow-md z-10'>
+          <div className='-rotate-12 flex items-center justify-center w-42 h-52 md:w-52 md:h-52 bg-white rounded-2xl border border-gray shadow-md z-10'>
             <img
               src={Apart1}
               alt=''
-              className='w-30 h-30 md:w-50 md:h-50 object-cover rounded-xl shadow-lg'
+              className='w-40 h-50 md:w-50 md:h-50 object-cover rounded-xl shadow-lg'
             />
           </div>
-          <div className='rotate-12 flex items-center justify-center w-32 h-32 md:w-52 md:h-52 bg-white rounded-2xl border border-gray md z-10'>
+          <div className='rotate-12 flex items-center justify-center w-42 h-52 md:w-52 md:h-52 bg-white rounded-2xl border border-gray md z-10'>
             <img
               src={Apart2}
               alt=''
-              className='w-30 h-30 md:w-50 md:h-50 object-cover rounded-xl shadow-lg'
+              className='w-40 h-50 md:w-50 md:h-50 object-cover rounded-xl shadow-lg'
             />
           </div>
         </div>

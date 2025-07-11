@@ -2,6 +2,8 @@ import React from "react"
 import { Routes, Route } from "react-router-dom"
 import Layout from "../Layout"
 import PageLoader from "@/utils/PageLoader"
+import FAQPage from "@/pages/website/FAQPage"
+import PrivacyPolicy from "@/pages/website/PrivacyPolicy"
 
 // Lazy load pages for better performance
 const Home = React.lazy(() => import("../pages/website/Home"))
@@ -37,7 +39,22 @@ const AppRoutes = () => {
             </Layout>
           }
         />
-
+        <Route
+          path='/faqs'
+          element={
+            <Layout>
+              <FAQPage />
+            </Layout>
+          }
+        />
+        <Route
+          path='/privacy-policy'
+          element={
+            <Layout>
+              <PrivacyPolicy />
+            </Layout>
+          }
+        />
         {/* Auth routes can be added here */}
         {/* Protected routes can be added here */}
 
