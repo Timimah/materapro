@@ -1,8 +1,14 @@
-from django.contrib import admin
-from django.urls import path, include
-from users.views import CustomRegisterView
+from django.urls import path
+from .views import RegisterView
+from rest_framework_simplejwt.views import (
+    TokenRefreshView,
+    TokenBlacklistView,
+    TokenObtainPairView,
+)
 
 urlpatterns = [
-    path("", include("dj_rest_auth.urls")),
-    path("register/", CustomRegisterView.as_view(), name="custom_register"),
+    path("login/", TokenObtainPairView.as_view(), name="login"),
+    path("logout/", TokenBlacklistView.as_view(), name="logout"),
+    path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("register/", RegisterView.as_view(), name="register"),
 ]

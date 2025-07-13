@@ -22,12 +22,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     # Third Party
     "rest_framework",
-    "rest_framework.authtoken",
-    "dj_rest_auth",
-    "dj_rest_auth.registration",
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
+    "rest_framework_simplejwt.token_blacklist",
     # Local
     "users",
 ]
@@ -37,7 +32,6 @@ MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
-    "allauth.account.middleware.AccountMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -60,10 +54,7 @@ TEMPLATES = [
 
 ROOT_URLCONF = "core.urls"
 
-SITE_ID = 1
 AUTH_USER_MODEL = "users.User"
-
-REST_USE_JWT = True
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
@@ -76,20 +67,17 @@ from datetime import timedelta
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
 # Internationalization
-
 LANGUAGE_CODE = "en-us"
-
 TIME_ZONE = "UTC"
-
 USE_I18N = True
-
 USE_TZ = True
 
-
 STATIC_URL = "/static/"
-
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

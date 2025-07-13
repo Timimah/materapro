@@ -7,6 +7,8 @@ class User(AbstractUser):
     Custom user model that extends Django's AbstractUser.
     """
 
+    email = models.EmailField(unique=True)
+
     ROLE_CHOICES = (
         ("CLIENT", "Client"),
         ("SUPPLIER", "Supplier"),
@@ -25,5 +27,8 @@ class User(AbstractUser):
         help_text="Designates whether this user has verified their email address.",
     )
 
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["first_name", "last_name"]
+
     def __str__(self):
-        return f"{self.username} ({self.role})"
+        return f"{self.get_full_name()} ({self.role})"
