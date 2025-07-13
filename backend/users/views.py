@@ -1,9 +1,15 @@
 from .serializers import RegisterSerializer, UserSerializer
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.views import APIView
+from rest_framework.generics import GenericAPIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenBlacklistView,
+    TokenRefreshView,
+)
+from drf_spectacular.utils import extend_schema
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -17,11 +23,19 @@ def get_tokens_for_user(user):
     }
 
 
-class RegisterView(APIView):
+@extend_schema(
+    tags=["Auth"],
+    summary="Register a new user",
+    description="Creates a new user with role-based access. Requires email, password, and role.",
+    request=RegisterSerializer,
+    responses={201: RegisterSerializer},
+)
+class RegisterView(GenericAPIView):
+    serializer_class = RegisterSerializer
     permission_classes = [AllowAny]
 
     def post(self, request):
-        serializer = RegisterSerializer(data=request.data)
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
         user = serializer.save()
@@ -32,15 +46,61 @@ class RegisterView(APIView):
         )
 
 
-class UserDetailsView(APIView):
+@extend_schema(
+    tags=["User"],
+    summary="Retrieve and edit user details",
+    description="Retrieve and edit user information.",
+    request=RegisterSerializer,
+    responses={201: RegisterSerializer},
+)
+class UserDetailsView(GenericAPIView):
+    serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        serializer = UserSerializer(request.user)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        serializer = self.get_serializer(request.user)
+        return Response(serializer.data)
 
     def patch(self, request):
-        serializer = UserSerializer(request.user, data=request.data, partial=True)
+        serializer = self.get_serializer(request.user, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
-        user = serializer.save()
-        return Response(UserSerializer(user).data, status=status.HTTP_200_OK)
+        serializer.save()
+        return Response(serializer.data)
+
+
+@extend_schema(
+    tags=["Auth"],
+    summary="Log in",
+    description="Returns JWT access and refresh tokens for valid credentials.",
+)
+class LoginView(TokenObtainPairView):
+    """
+    Endpoint to log users in."""
+
+    pass
+
+
+@extend_schema(
+    tags=["Auth"],
+    summary="Log out",
+    description="Blacklists JWT refresh tokens.",
+)
+class LogoutView(TokenBlacklistView):
+    """
+    Endpoint to log out a user by blacklisting their refresh token.
+    """
+
+    pass
+
+
+@extend_schema(
+    tags=["Auth"],
+    summary="Refresh token",
+    description="Refreshes JWT access tokens for valid credentials.",
+)
+class RefreshView(TokenRefreshView):
+    """
+    Endpoint to refresh access token
+    """
+
+    pass
