@@ -64,7 +64,7 @@ class UserDetailsView(GenericAPIView):
     def patch(self, request):
         serializer = self.get_serializer(request.user, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        serializer.save() # Remove password, role and email from update
         return Response(serializer.data)
 
 
