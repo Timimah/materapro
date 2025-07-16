@@ -4,51 +4,34 @@ import { useSwipeable } from "react-swipeable"
 import { useNavigate } from "react-router-dom"
 import { useOnboardingStore } from "@/hooks/useOnboardingStore"
 import { OnboardingSlide } from "@/components/app/shared/OnboardingSlide"
+import logo from "@assets/shared/logo.png"
+import slide1 from "@assets/app/client/amico.svg"
+import slide2 from "@assets/app/client/bro.svg"
+import slide3 from "@assets/app/client/pana.svg"
+import slide4 from "@assets/app/client/cuate.svg"
+import { FaChevronLeft } from "react-icons/fa"
+import { HiOutlineChevronDoubleRight } from "react-icons/hi"
 
 const slides = [
   {
     title: "Material Procurement",
     description: "Access quality materials from trusted suppliers.",
-    image: (
-      <img
-        src='/assets/illustrations/material.svg'
-        alt='Material'
-        className='w-60'
-      />
-    ),
+    image: <img src={slide1} alt='Material' className='w-60' />,
   },
   {
     title: "Transparency & Quality",
     description: "Ensure project success with our vetted workers.",
-    image: (
-      <img
-        src='/assets/illustrations/transparency.svg'
-        alt='Transparency'
-        className='w-60'
-      />
-    ),
+    image: <img src={slide2} alt='Transparency' className='w-60' />,
   },
   {
     title: "Worker Showroom",
     description: "Find skilled workers for your project.",
-    image: (
-      <img
-        src='/assets/illustrations/workers.svg'
-        alt='Workers'
-        className='w-60'
-      />
-    ),
+    image: <img src={slide3} alt='Workers' className='w-60' />,
   },
   {
     title: "Efficient Collaboration",
     description: "Connect with clients seamlessly.",
-    image: (
-      <img
-        src='/assets/illustrations/collaboration.svg'
-        alt='Collab'
-        className='w-60'
-      />
-    ),
+    image: <img src={slide4} alt='Collab' className='w-60' />,
   },
 ]
 
@@ -92,12 +75,8 @@ export default function OnboardingPage() {
         >
           {/* Splash Screen Content */}
           <div className='flex flex-col items-center'>
-            <img
-              src='/assets/logo.svg'
-              alt='App Logo'
-              className='w-24 h-24 mb-4'
-            />
-            <h1 className='text-2xl font-bold text-primary'>MateraPro</h1>
+            <img src={logo} alt='App Logo' className='w-1/2 h-1/2 mb-4' />
+            {/* <h1 className='text-2xl font-bold text-primary'>MateraPro</h1> */}
           </div>
         </motion.div>
       ) : (
@@ -125,9 +104,9 @@ export default function OnboardingPage() {
             {step > 0 ? (
               <button
                 onClick={prev}
-                className='text-blue-600 font-medium hover:underline'
+                className='text-lnblack font-medium hover:underline'
               >
-                Back
+                <FaChevronLeft />
               </button>
             ) : (
               <div />
@@ -135,9 +114,11 @@ export default function OnboardingPage() {
 
             <button
               onClick={handleNext}
-              className='text-primary px-6 py-2 border-0 hover:text-lnblack transition'
+              className='text-primary px-6 py-2 text-sm border-0 hover:text-lnblack transition'
             >
-              {step < slides.length - 1 ? "Swipe" : ""}
+              {step < slides.length - 1
+                ? `Swipe ${(<HiOutlineChevronDoubleRight />)}`
+                : ""}
             </button>
           </div>
 
