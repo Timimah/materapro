@@ -1,8 +1,8 @@
 import AnimatedCard from "@/components/website/AnimatedCard"
 import ValuesSection from "@/components/website/ValuesSection"
-import aboutHero from "@assets/about1.jpeg"
-import about from "@assets/about2.jpeg"
-import vision from "@assets/about4.jpeg"
+import aboutHero from "@assets/website/about1.jpeg"
+import about from "@assets/website/about2.jpeg"
+import vision from "@assets/website/about4.jpeg"
 
 const AboutUs = () => {
   return (
