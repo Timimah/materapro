@@ -1,23 +1,32 @@
+import supply from "@assets/icons/bag.png"
+import worker from "@assets/icons/profile-2user.png"
+import collaborate from "@assets/icons/note.png"
+import quality from "@assets/icons/Frame 2608876.png"
+import call from "@assets/icons/call.png"
+import mail from "@assets/icons/sms.png"
+import message from "@assets/icons/messages-2.png"
+import visit from "@assets/icons/location.png"
+
 export const services = [
   {
     title: "Supply Procurement",
     description: "Access quality materials from trusted suppliers",
-    icon: "📦",
+    icon: supply,
   },
   {
     title: "Worker Showroom",
     description: "Find skilled workers for your projects",
-    icon: "👷",
+    icon: worker,
   },
   {
     title: "Efficient Collaboration",
     description: "Connect with clients and workers seamlessly",
-    icon: "🤝",
+    icon: collaborate,
   },
   {
     title: "Transparency & Quality",
     description: "Ensure project success with our vetted workers",
-    icon: "✅",
+    icon: quality,
   },
 ]
 
@@ -77,25 +86,25 @@ export const contactDetails = [
   {
     title: "Call us",
     description: "Mon to Fri from 8am to 5pm.",
-    icon: "📦",
+    icon: call,
     details: "+234 913 5029 688",
   },
   {
     title: "Send a mail",
     description: "We are here to help",
-    icon: "👷",
+    icon: mail,
     details: "materapro@gmail.com",
   },
   {
     title: "Chat with support",
     description: "Speak to our friendly team",
-    icon: "🤝",
+    icon: message,
     details: "materapro@gmail.com",
   },
   {
     title: "Visit us",
     description: "Visit our office headquarters",
-    icon: "✅",
+    icon: visit,
     details: "View on Google Maps",
   },
 ]
@@ -124,7 +133,7 @@ export const animations = {
 
 export const companyInfo = {
   whyChooseUs:
-    "At MateraPro, we offer a showroom for skilled workers with excellent work ethics and proven records of exceptional quality for construction clients to enjoy. Hence, we are basically solving the issues involved in construction projects that leads to elongations of completion period and unachievable increase in cost of construction project.",
+    "At MateraPro, we are not only concerned about seamless procurement process, we also offer a showroom for skilled workers with work ethics and proven record of exceptional quality for construction clients to enjoy. Hence, we are structured to solving the issues involved in construction project, that often leads to elongations of completion period and unimaginable increase in cost of your construction project.",
 
   whatWeOffer:
     "We offer innovative solutions that promote excellent work ethics in the construction industry while driving efficiency.",

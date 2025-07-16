@@ -97,7 +97,9 @@ const Footer = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
               className='flex flex-col justify-between gap-4 text-xs pb-10 md:pb-0'
             >
-              <p className='font-bold'>© 2024 MateraPro. All rigts reserved.</p>
+              <p className='font-bold'>
+                © 2025 MateraPro. All rights reserved.
+              </p>
 
               {/* Social Links */}
               <div className='flex  gap-4'>
