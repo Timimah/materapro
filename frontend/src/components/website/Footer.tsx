@@ -2,8 +2,8 @@
 import React from "react"
 import { motion } from "framer-motion"
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa"
-import Footerimg from "@assets/home5.webp"
-import logo from "@assets/logo.png"
+import Footerimg from "@/assets/website/home5.webp"
+import logo from "@assets/shared/logo.png"
 
 const Footer = () => {
   const socialLinks = [

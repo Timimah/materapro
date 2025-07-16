@@ -1,7 +1,7 @@
 import supply from "@assets/icons/bag.png"
 import worker from "@assets/icons/profile-2user.png"
 import collaborate from "@assets/icons/note.png"
-import quality from "@assets/icons/Frame 2608876.png"
+import quality from "@assets/icons/3dcube.png"
 import call from "@assets/icons/call.png"
 import mail from "@assets/icons/sms.png"
 import message from "@assets/icons/messages-2.png"

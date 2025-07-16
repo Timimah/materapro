@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { motion } from "framer-motion"
 import Accordion from "./Accordion"
-import Support from "@assets/amico.png"
+import Support from "@assets/website/amico.png"
 import { faqs } from "./data"
 
 interface FAQSectionProps {
