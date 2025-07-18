@@ -1,0 +1,51 @@
+name: Django CI
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+
+defaults:
+  run:
+    working-directory: backend
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      ENV_PATH: .env.test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install coverage
+
+      - name: Run migrations
+        run: |
+          python manage.py migrate
+
+      - name: Run tests with coverage
+        run: |
+          coverage run manage.py test
+          coverage report
+          # Optional: create html report
+          coverage html
