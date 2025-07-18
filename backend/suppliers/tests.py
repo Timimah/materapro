@@ -17,7 +17,7 @@ class SupplierProfileAPITest(APITestCase):
             role="SUPPLIER",
         )
         self.client.login(email="supplier@example.com", password="password123")
-        self.profile_url = reverse("supplier-profile")
+        self.profile_url = reverse("supplier_profile")
 
     def authenticate(self):
         response = self.client.post(
