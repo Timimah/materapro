@@ -1,18 +1,10 @@
-from rest_framework import generics, permissions, status
-from rest_framework.decorators import action
+from rest_framework import generics, status
 from rest_framework.exceptions import PermissionDenied, NotFound
 from .models import SupplierProfile
 from rest_framework.response import Response
 from .serializers import SupplierProfileSerializer
 from drf_spectacular.utils import extend_schema
-
-
-class IsSupplier(permissions.BasePermission):
-    def has_permission(self, request, view):
-        return request.user.is_authenticated and request.user.role == "SUPPLIER"
-
-    def has_object_permission(self, request, view, obj):
-        return obj.user == request.user
+from .permissions import IsSupplier
 
 
 @extend_schema(
