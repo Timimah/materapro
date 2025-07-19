@@ -16,5 +16,8 @@ db.sqlite3
 .vscode/
 .idea/
 
+# Test related
+.coverage
+
 # System
 .DS_Store
