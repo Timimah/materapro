@@ -11,7 +11,7 @@ class SupplierProfile(models.Model):
     business_name = models.CharField(max_length=225)
     bio = models.TextField(blank=True)
     website = models.URLField(blank=True)
-    logo = models.URLField(blank=True)
+    logo = models.ImageField(upload_to="suppliers/logos/", blank=True, null=True)
     state = models.CharField(max_length=225)
     city = models.CharField(max_length=225)
     location = models.CharField(max_length=225, blank=True)
