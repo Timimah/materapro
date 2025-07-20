@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     # Local
     "users",
     "suppliers",
+    "listings",
 ]
 
 MIDDLEWARE = [
