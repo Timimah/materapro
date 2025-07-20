@@ -4,7 +4,7 @@ from .models import SupplierProfile
 from rest_framework.response import Response
 from .serializers import SupplierProfileSerializer
 from drf_spectacular.utils import extend_schema
-from .permissions import IsSupplier
+from permissions import IsSupplier
 
 
 @extend_schema(
