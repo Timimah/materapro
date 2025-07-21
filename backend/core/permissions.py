@@ -21,3 +21,15 @@ class IsAdminOrReadOnly(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
         return request.user.is_authenticated and request.user.is_staff
+
+
+class IsOwner(permissions.BasePermission):
+    """
+    Allows access to only the owner.
+    """
+
+    def has_permission(self, request, view):
+        return request.user.is_authenticated
+
+    def has_object_permission(self, request, view, obj):
+        return hasattr(obj, "user") and obj.user == request.user
