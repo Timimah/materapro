@@ -1,14 +1,16 @@
 from rest_framework import permissions
 
 
-class IsSupplier(permissions.BasePermission):
-    """Custom permission to only allow suppliers to access their own profile."""
+class IsSupplierOrReadOnly(permissions.BasePermission):
+    """Custom permission to allow suppliers to edit their own profile."""
 
     def has_permission(self, request, view):
+        if request.method in permissions.SAFE_METHODS:
+            return True
         return request.user.is_authenticated and request.user.role == "SUPPLIER"
 
     def has_object_permission(self, request, view, obj):
-        return obj.user == request.user
+        return hasattr(obj, "user") and obj.user == request.user
 
 
 class IsAdminOrReadOnly(permissions.BasePermission):
@@ -23,12 +25,14 @@ class IsAdminOrReadOnly(permissions.BasePermission):
         return request.user.is_authenticated and request.user.is_staff
 
 
-class IsOwner(permissions.BasePermission):
+class IsOwnerOrReadOnly(permissions.BasePermission):
     """
     Allows access to only the owner.
     """
 
     def has_permission(self, request, view):
+        if request.method in permissions.SAFE_METHODS:
+            return True
         return request.user.is_authenticated
 
     def has_object_permission(self, request, view, obj):

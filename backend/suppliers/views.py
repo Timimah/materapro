@@ -4,7 +4,7 @@ from .models import SupplierProfile
 from rest_framework.response import Response
 from .serializers import SupplierProfileSerializer
 from drf_spectacular.utils import extend_schema
-from core.permissions import IsSupplier
+from core.permissions import IsSupplierOrReadOnly
 
 
 @extend_schema(
@@ -17,7 +17,7 @@ from core.permissions import IsSupplier
 )
 class SupplierProfileView(generics.GenericAPIView):
     serializer_class = SupplierProfileSerializer
-    permission_classes = [IsSupplier]
+    permission_classes = [IsSupplierOrReadOnly]
 
     def get_object(self):
         try:
