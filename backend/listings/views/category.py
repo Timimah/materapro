@@ -32,6 +32,7 @@ class CategoryListCreateView(generics.ListCreateAPIView):
     },
 )
 class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
+    http_method_names = ["get", "patch", "delete"]
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     permission_classes = [IsAdminOrReadOnly]
