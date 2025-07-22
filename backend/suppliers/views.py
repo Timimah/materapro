@@ -20,8 +20,10 @@ class SupplierProfileView(generics.GenericAPIView):
     permission_classes = [IsSupplierOrReadOnly]
 
     def get_object(self):
+        user = self.request.user
+
         try:
-            return self.request.user.supplier_profile
+            return user.supplier_profile
         except SupplierProfile.DoesNotExist:
             raise NotFound("Supplier profile not found.")
 
