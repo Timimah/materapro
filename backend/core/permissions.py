@@ -10,6 +10,8 @@ class IsSupplierOrReadOnly(permissions.BasePermission):
         return request.user.is_authenticated and request.user.role == "SUPPLIER"
 
     def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
         return hasattr(obj, "user") and obj.user == request.user
 
 
@@ -27,13 +29,20 @@ class IsAdminOrReadOnly(permissions.BasePermission):
 
 class IsOwnerOrReadOnly(permissions.BasePermission):
     """
-    Allows access to only the owner.
+    Allows edit to only the owner and public read access.
     """
 
     def has_permission(self, request, view):
-        if request.method in permissions.SAFE_METHODS:
-            return True
-        return request.user.is_authenticated
+        return (
+            request.method in permissions.SAFE_METHODS or request.user.is_authenticated
+        )
 
     def has_object_permission(self, request, view, obj):
-        return hasattr(obj, "user") and obj.user == request.user
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        if hasattr(obj, "user"):
+            return obj.user == request.user
+        elif hasattr(obj, "supplier"):
+            return obj.supplier.user == request.user
+        return False
