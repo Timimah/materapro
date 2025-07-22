@@ -1,7 +1,7 @@
 from rest_framework import generics
 from ..models import Category
 from ..serializers import CategorySerializer
-from permissions import IsAdminOrReadOnly
+from core.permissions import IsAdminOrReadOnly
 from drf_spectacular.utils import extend_schema
 
 
