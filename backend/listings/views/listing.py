@@ -1,8 +1,12 @@
 from rest_framework import generics, status
 from drf_spectacular.utils import extend_schema
+from drf_spectacular.types import OpenApiTypes
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
 from rest_framework.exceptions import NotFound
 from core.permissions import IsSupplierOrReadOnly, IsOwnerOrReadOnly
 from ..models import Listing
+from ..filters import ListingFilter
 from ..serializers.listing import (
     ListingCreateUpdateSerializer,
     ListingDetailSerializer,
@@ -20,12 +24,19 @@ from ..serializers.listing import (
     },
 )
 class ListingListCreateView(generics.ListCreateAPIView):
+    queryset = Listing.objects.filter(is_active=True).select_related(
+        "category", "supplier"
+    )
     permission_classes = [IsSupplierOrReadOnly]
-
-    def get_queryset(self):
-        return Listing.objects.filter(is_active=True).select_related(
-            "category", "supplier"
-        )
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,
+    ]
+    filterset_class = ListingFilter
+    search_fields = ["title"]
+    ordering_fields = ["price", "updated_at", "created_at"]
+    ordering = ["-updated_at"]
 
     def get_serializer_class(self):
         if self.request.method == "GET":
@@ -49,7 +60,7 @@ class ListingListCreateView(generics.ListCreateAPIView):
     responses={
         status.HTTP_200_OK: ListingDetailSerializer,
         status.HTTP_204_NO_CONTENT: None,
-        status.HTTP_404_NOT_FOUND: "Listing not found.",
+        status.HTTP_404_NOT_FOUND: OpenApiTypes.STR,
     },
 )
 class ListingRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
