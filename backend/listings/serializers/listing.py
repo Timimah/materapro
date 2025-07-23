@@ -72,6 +72,7 @@ class ListingListSerializer(serializers.ModelSerializer):
             "price",
             "supplier",
             "category",
+            "stock_quantity",
             "image",
         ]
         read_only_fields = ["id"]
