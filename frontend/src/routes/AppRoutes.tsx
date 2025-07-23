@@ -2,11 +2,28 @@ import React from "react"
 import { Routes, Route } from "react-router-dom"
 import Layout from "../Layout"
 import PageLoader from "@/utils/PageLoader"
+// import { ProtectedRoute } from "@/components/app/shared/ProtectedRoutes"
+// import { ArtisanOnboarding } from "@/components/app/artisan/ArtisanOnboarding"
+import OnboardingPage from "@/pages/shared/OnboardingPage"
 
 // Lazy load pages for better performance
 const Home = React.lazy(() => import("../pages/website/Home"))
 const AboutUs = React.lazy(() => import("../pages/website/AboutUs"))
 const ContactUs = React.lazy(() => import("../pages/website/ContactUs"))
+const FAQPage = React.lazy(() => import("../pages/website/FAQPage"))
+const PrivacyPolicy = React.lazy(() => import("../pages/website/PrivacyPolicy"))
+
+// Auth pages
+// const Login = React.lazy(() => import("./components/auth/Login"));
+// const Register = React.lazy(() => import("./components/auth/Register"));
+
+// // Onboarding pages
+// const ClientOnboarding = React.lazy(() => import("./components/onboarding/ClientOnboarding"));
+// const ArtisanOnboarding = React.lazy(() => import("./components/onboarding/ArtisanOnboarding"));
+
+// // Dashboard pages
+// const ClientDashboard = React.lazy(() => import("./pages/client/Dashboard"));
+// const ArtisanDashboard = React.lazy(() => import("./pages/artisan/Dashboard"));
 
 const AppRoutes = () => {
   return (
@@ -37,9 +54,63 @@ const AppRoutes = () => {
             </Layout>
           }
         />
-
+        <Route
+          path='/faqs'
+          element={
+            <Layout>
+              <FAQPage />
+            </Layout>
+          }
+        />
+        <Route
+          path='/privacy-policy'
+          element={
+            <Layout>
+              <PrivacyPolicy />
+            </Layout>
+          }
+        />
         {/* Auth routes can be added here */}
+        {/* Auth routes */}
+        {/* <Route path='/login' element={<Login />} /> */}
+        {/* <Route path='/register' element={<Register />} /> */}
+
         {/* Protected routes can be added here */}
+        {/* Client routes */}
+        <Route
+          path='/client/onboarding'
+          element={
+            // <ProtectedRoute userType='client'>
+            <OnboardingPage />
+            // </ProtectedRoute>
+          }
+        />
+        {/* <Route
+          path='/client/*'
+          element={
+            <ProtectedRoute userType='client' requireOnboarding>
+              <ClientDashboard />
+            </ProtectedRoute>
+          }
+        /> */}
+
+        {/* Artisan routes */}
+        {/* <Route
+          path='/artisan/onboarding'
+          element={
+            <ProtectedRoute userType='artisan'>
+              <ArtisanOnboarding />
+            </ProtectedRoute>
+          }
+        /> */}
+        {/* <Route
+          path='/artisan/*'
+          element={
+            <ProtectedRoute userType='artisan' requireOnboarding>
+              <ArtisanDashboard />
+            </ProtectedRoute>
+          }
+        /> */}
 
         {/* 404 route */}
         <Route

@@ -53,7 +53,11 @@ const ContactUs = () => {
                 whileHover='hover'
               >
                 <div className='rounded-full bg-white w-15 h-15 flex justify-center items-center'>
-                  {contact.icon}
+                  <img
+                    src={contact.icon}
+                    alt={contact.title}
+                    className='w-6 h-6'
+                  />
                 </div>
                 <h3 className='font-bold text-black mb-2'>{contact.title}</h3>
                 <p className='text-gray-600'>{contact.description}</p>

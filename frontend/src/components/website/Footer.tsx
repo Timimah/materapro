@@ -2,8 +2,8 @@
 import React from "react"
 import { motion } from "framer-motion"
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa"
-import Footerimg from "@assets/home5.webp"
-import logo from "@assets/logo.png"
+import Footerimg from "@/assets/website/home5.webp"
+import logo from "@assets/shared/logo.png"
 
 const Footer = () => {
   const socialLinks = [
@@ -17,8 +17,8 @@ const Footer = () => {
     {
       title: "About us",
       links: [
-        { text: "Mission Statement", href: "#" },
-        { text: "Values", href: "#" },
+        { text: "Mission Statement", href: "about" },
+        { text: "Values", href: "about" },
       ],
     },
     {
@@ -32,7 +32,7 @@ const Footer = () => {
       title: "Help & Support",
       links: [
         { text: "FAQS", href: "faqs" },
-        { text: "Privacy Policy", href: "#" },
+        { text: "Privacy Policy", href: "privacy-policy" },
       ],
     },
   ]
@@ -46,7 +46,7 @@ const Footer = () => {
             alt='Footer image'
             className='relative rounded-xl object-cover h-full w-full'
           />
-          <div className='bg-black/30 absolute inset-0 text-white text-center text-2xl md:text-4xl flex items-center justify-center rounded-xl font-extrabold px-10 md:px-80'>
+          <div className='bg-black/30 absolute inset-0 text-white text-center text-2xl md:text-4xl flex items-center justify-center rounded-xl font-extrabold my-1 mx-1 px-10 md:px-80'>
             Transforming the Construction Industry with Digital Innovation.
           </div>
         </div>
@@ -73,7 +73,7 @@ const Footer = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className='flex flex-col gap-4 md:gap-5'
+                  className='flex flex-col gap-4 md:gap-5 mx-2'
                 >
                   <p className='font-bold'>{section.title}</p>
                   <ul className='flex flex-col gap-3 md:gap-3'>
@@ -97,7 +97,9 @@ const Footer = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
               className='flex flex-col justify-between gap-4 text-xs pb-10 md:pb-0'
             >
-              <p className='font-bold'>© 2024 MateraPro. All rigts reserved.</p>
+              <p className='font-bold'>
+                © 2025 MateraPro. All rights reserved.
+              </p>
 
               {/* Social Links */}
               <div className='flex  gap-4'>

@@ -1,8 +1,8 @@
 import AnimatedCard from "@/components/website/AnimatedCard"
 import ValuesSection from "@/components/website/ValuesSection"
-import aboutHero from "@assets/about1.jpeg"
-import about from "@assets/about2.jpeg"
-import vision from "@assets/about4.jpeg"
+import aboutHero from "@assets/website/about1.jpeg"
+import about from "@assets/website/about2.jpeg"
+import vision from "@assets/website/about4.jpeg"
 
 const AboutUs = () => {
   return (
@@ -35,27 +35,24 @@ const AboutUs = () => {
             Our Story
           </p>
           <p className='w-full md:w-[55em]'>
-            The storyline behind the vision of MateraPro was born out of my
-            desire to enhance various activities in the construction industry. I
-            knew there had to be a better way of doing most of these activities
-            and achieving better results in terms of cost and time, which would
-            ultimately save clients and keep them profitable. During my
-            undergraduate studies, I ensured that I optimized my internship
-            opportunities, and along the way, I realized that the procurement
-            process and access to excellent workers were significantly stressful
-            and challenging aspects of the industry. The last experience I had
-            during my internship was particularly painful as it cost the client
-            millions of naira due to bad ethics and poor workers for a floor
-            stamp, but his unavailability for nearly 48 hours after giving
-            instructions led to this procurement department was also available,
-            provided there was a digital platform to procure materials and
-            access excellent workers. To avoid seeing this kind of experience in
-            the industry, I came up with the idea of what MateraPro is all
-            about.
-          </p>
-          <p className='font-bold text-black'>
-            Ademola Olagbenro <br />
-            CEO, MateraPro
+            At MateraPro, we started with a simple but powerful vision — to
+            transform the construction industry in Nigeria through digital
+            innovation. <br />
+            <br /> Frustrated by delays, inefficiencies, and a lack of access to
+            trusted professionals and quality materials, we created a smart and
+            all-inclusive platform where builders, contractors, suppliers, and
+            other service providers can connect, collaborate, and build with
+            confidence. <br />
+            <br /> Born from a deep understanding of the industry’s challenges,
+            MateraPro bridges the gap between technology and construction by
+            providing verified vendors, transparent pricing, real-time project
+            support, and a growing digital community. We are proudly Nigerian,
+            built by industry enthusiasts, and driven by a mission to make
+            construction faster, smarter, and more sustainable. <br />
+            <br /> For any of your construction projects, MateraPro is your go
+            to partner for building success. Helping you save time, cost, and
+            ensuring that materials get to your site on time, in the right
+            quality and specification.
           </p>
         </div>
         <AnimatedCard />

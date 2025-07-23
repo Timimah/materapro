@@ -35,7 +35,7 @@ const AnimatedCard = () => {
         transition={{ duration: 0.5 }}
       >
         <p className='text-xl md:text-2xl font-bold text-black'>2024</p>
-        <p className='text-sm'>Available for construction since</p>
+        <p className='text-sm'>Available for construction industry since</p>
       </motion.div>
 
       <motion.div
