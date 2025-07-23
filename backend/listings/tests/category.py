@@ -26,8 +26,8 @@ class CategoryAPITests(APITestCase):
         url = reverse("category-list-create")  # Adjust name to your actual URL name
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data[0]["name"], "Electronics")
-        self.assertEqual(len(response.data[0]["subcategories"]), 2)
+        self.assertEqual(response.data["results"][0]["name"], "Electronics")
+        self.assertEqual(len(response.data["results"][0]["subcategories"]), 2)
 
     def test_admin_can_create_category(self):
         self.client.force_authenticate(user=self.admin_user)
