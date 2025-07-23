@@ -4,7 +4,7 @@ from .models import SupplierProfile
 from rest_framework.response import Response
 from .serializers import SupplierProfileSerializer
 from drf_spectacular.utils import extend_schema
-from core.permissions import IsSupplierOrReadOnly
+from core.permissions import IsOwner
 
 
 @extend_schema(
@@ -17,15 +17,15 @@ from core.permissions import IsSupplierOrReadOnly
 )
 class SupplierProfileView(generics.GenericAPIView):
     serializer_class = SupplierProfileSerializer
-    permission_classes = [IsSupplierOrReadOnly]
+    permission_classes = [IsOwner]
 
     def get_object(self):
         user = self.request.user
 
-        try:
-            return user.supplier_profile
-        except SupplierProfile.DoesNotExist:
+        if not hasattr(user, "supplier_profile"):
             raise NotFound("Supplier profile not found.")
+
+        return user.supplier_profile
 
     def get(self, request, *args, **kwargs):
         profile = self.get_object()
