@@ -1,11 +1,14 @@
 import React from "react"
 import SmoothScroll from "./utils/SmoothScroll"
 import AppRoutes from "./routes/AppRoutes"
+import { AuthProvider } from "./contexts/AuthContext"
 
 const App: React.FC = () => {
   return (
     <SmoothScroll>
-      <AppRoutes />
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
     </SmoothScroll>
   )
 }
