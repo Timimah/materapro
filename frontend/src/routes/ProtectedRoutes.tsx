@@ -1,109 +1,33 @@
-// routes/ProtectedRoutes.tsx
-import React from "react"
-import { Navigate, useLocation } from "react-router-dom"
-import { useAuth } from "@/hooks/useAuth"
-import { UserType } from "@/types/user"
-import PageLoader from "@/utils/PageLoader"
+import { useAuthStore } from "@/hooks/useAuthStore"
+import { Navigate } from "react-router-dom"
+import { JSX } from "react"
 
-interface ProtectedRouteProps {
-  children: React.ReactNode
-  allowedRoles?: UserType[]
-  requireOnboarding?: boolean
-  requireEmailVerification?: boolean
-}
-
-// Base Protected Route
-export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
+export default function ProtectedRoute({
   children,
-  allowedRoles,
+  role,
   requireOnboarding = false,
-  requireEmailVerification = false,
-}) => {
-  const { user, isAuthenticated, isLoading } = useAuth()
-  const location = useLocation()
+}: {
+  children: JSX.Element
+  role?: "client" | "artisan"
+  requireOnboarding?: boolean
+}) {
+  const { user, isAuthenticated, isLoading } = useAuthStore()
 
   if (isLoading) {
-    return <PageLoader />
+    return <div className='text-center py-10'>Loading...</div>
   }
 
   if (!isAuthenticated || !user) {
-    return <Navigate to='/client/login' state={{ from: location }} replace />
+    return <Navigate to='/login' replace />
   }
 
-  // Check if user role is allowed
-  if (allowedRoles && !allowedRoles.includes(user.type)) {
-    // Redirect to appropriate dashboard based on user type
-    const redirectPath = `/${user.type}/dashboard`
-    return <Navigate to={redirectPath} replace />
+  if (role && user.type !== role) {
+    return <Navigate to='/' replace />
   }
 
-  // Check email verification requirement
-  if (requireEmailVerification && !user.emailVerified) {
-    return <Navigate to='/verify-email' replace />
-  }
-
-  // Check onboarding requirement
   if (requireOnboarding && !user.isOnboarded) {
-    const onboardingPath = `/${user.type}/onboarding`
-    return <Navigate to={onboardingPath} replace />
+    return <Navigate to={`/${user.type}/onboarding`} replace />
   }
 
-  return <>{children}</>
+  return children
 }
-
-// Public Route (accessible to non-authenticated users)
-export const PublicRoute: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
-  return <>{children}</>
-}
-
-// Auth Route (only accessible when not authenticated)
-export const AuthRoute: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
-  const { user, isAuthenticated, isLoading } = useAuth()
-
-  if (isLoading) {
-    return <PageLoader />
-  }
-
-  // If user is authenticated, don't redirect automatically
-  // Let them access auth pages like account setup
-  if (isAuthenticated && user) {
-    // Only redirect if they're trying to access login/register pages
-    // and they're fully set up
-    const currentPath = window.location.pathname
-    if (
-      (currentPath.includes("/login") || currentPath.includes("/register")) &&
-      user.isOnboarded
-    ) {
-      return <Navigate to={`/${user.type}/dashboard`} replace />
-    }
-  }
-
-  return <>{children}</>
-}
-
-// Role-specific route components
-export const ClientRoute: React.FC<
-  Omit<ProtectedRouteProps, "allowedRoles">
-> = (props) => <ProtectedRoute {...props} allowedRoles={["client"]} />
-
-export const ArtisanRoute: React.FC<
-  Omit<ProtectedRouteProps, "allowedRoles">
-> = (props) => (
-  <ProtectedRoute {...props} allowedRoles={["artisan", "supervisor"]} />
-)
-
-export const SupervisorRoute: React.FC<
-  Omit<ProtectedRouteProps, "allowedRoles">
-> = (props) => <ProtectedRoute {...props} allowedRoles={["supervisor"]} />
-
-export const AdminRoute: React.FC<Omit<ProtectedRouteProps, "allowedRoles">> = (
-  props
-) => <ProtectedRoute {...props} allowedRoles={["admin"]} />
-
-export const SupplierRoute: React.FC<
-  Omit<ProtectedRouteProps, "allowedRoles">
-> = (props) => <ProtectedRoute {...props} allowedRoles={["supplier"]} />

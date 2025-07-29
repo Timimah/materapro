@@ -19,11 +19,9 @@ const Navbar: React.FC = () => {
     const isActive = location.pathname === path
     return `hover:font-bold transition-colors py-4 text-center ${
       isActive
-        ? `font-bold ${
-            isHomePage ? "md:text-white text-lnblack" : "text-primary"
-          }`
+        ? `font-bold ${isHomePage ? "text-white" : "text-primary"}`
         : isHomePage
-        ? "md:text-white text-lnblack"
+        ? "text-white"
         : "text-lnblack"
     }`
   }
@@ -64,7 +62,7 @@ const Navbar: React.FC = () => {
       <div className='hidden md:flex w-fit'>
         <Button
           label={<Link to='/client/onboarding'>Download app</Link>}
-          className='bg-primary text-white'
+          className='bg-primary'
           hasBg
         />
       </div>
@@ -92,7 +90,7 @@ const Navbar: React.FC = () => {
         animate={isMenuOpen ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
         exit={{ y: -100, opacity: 0 }}
         transition={{ type: "spring", stiffness: 120, damping: 10 }}
-        className={`fixed top-20 left-0 w-full bg-gray2 shadow-lg rounded-b-2xl flex flex-col items-center py-5 space-y-4 transition-transform ${
+        className={`fixed top-20 left-0 w-full bg-white shadow-lg rounded-b-2xl flex flex-col items-center py-5 space-y-4 transition-transform ${
           isMenuOpen ? "block" : "hidden"
         }`}
       >
@@ -115,7 +113,7 @@ const Navbar: React.FC = () => {
         </Link>
         <Button
           label={<Link to='/client/onboarding'>Download app</Link>}
-          className='bg-primary w-3/4 text-white'
+          className='bg-primary w-3/4'
           hasBg
         />
       </motion.div>
