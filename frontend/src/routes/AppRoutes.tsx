@@ -2,15 +2,9 @@ import React from "react"
 import { Routes, Route } from "react-router-dom"
 import Layout from "../Layout"
 import PageLoader from "@/utils/PageLoader"
-import {
-  // ProtectedRoute,
-  AuthRoute,
-  ClientRoute,
-} from "@/routes/ProtectedRoutes"
+// import { ProtectedRoute } from "@/components/app/shared/ProtectedRoutes"
+// import { ArtisanOnboarding } from "@/components/app/artisan/ArtisanOnboarding"
 import OnboardingPage from "@/pages/shared/OnboardingPage"
-import Login from "@/pages/shared/LogIn"
-import WelcomePage from "@/pages/client/WelcomePage"
-import CardDetails from "@/components/app/client/CardDetails"
 
 // Lazy load pages for better performance
 const Home = React.lazy(() => import("../pages/website/Home"))
@@ -19,23 +13,23 @@ const ContactUs = React.lazy(() => import("../pages/website/ContactUs"))
 const FAQPage = React.lazy(() => import("../pages/website/FAQPage"))
 const PrivacyPolicy = React.lazy(() => import("../pages/website/PrivacyPolicy"))
 
-// Auth pages - will be uncommented when needed
-const CreateAccount = React.lazy(() => import("@/pages/shared/CreateAccount"))
-const AccountSetup = React.lazy(() => import("@/pages/client/AccountSetup"))
+// Auth pages
+// const Login = React.lazy(() => import("./components/auth/Login"));
+// const Register = React.lazy(() => import("./components/auth/Register"));
 
-// Onboarding pages - will be uncommented when needed
-// const ClientOnboarding = React.lazy(() => import("@/pages/client/ClientOnboarding"));
-// const ArtisanOnboarding = React.lazy(() => import("@/pages/artisan/ArtisanOnboarding"));
+// // Onboarding pages
+// const ClientOnboarding = React.lazy(() => import("./components/onboarding/ClientOnboarding"));
+// const ArtisanOnboarding = React.lazy(() => import("./components/onboarding/ArtisanOnboarding"));
 
-// Dashboard pages -- will be uncommented when needed
-// const ClientDashboard = React.lazy(() => import("@/pages/client/Dashboard"));
-// const ArtisanDashboard = React.lazy(() => import("@/pages/artisan/Dashboard"));
+// // Dashboard pages
+// const ClientDashboard = React.lazy(() => import("./pages/client/Dashboard"));
+// const ArtisanDashboard = React.lazy(() => import("./pages/artisan/Dashboard"));
 
 const AppRoutes = () => {
   return (
     <React.Suspense fallback={<PageLoader />}>
       <Routes>
-        {/* Public website routes */}
+        {/* Public routes */}
         <Route
           path='/'
           element={
@@ -76,124 +70,45 @@ const AppRoutes = () => {
             </Layout>
           }
         />
+        {/* Auth routes can be added here */}
+        {/* Auth routes */}
+        {/* <Route path='/login' element={<Login />} /> */}
+        {/* <Route path='/register' element={<Register />} /> */}
 
-        {/* Auth routes - only accessible when NOT logged in */}
-        {/* <Route
-          path='/login'
-          element={
-            <AuthRoute>
-              <Login />
-            </AuthRoute>
-          }
-        /> */}
-        <Route
-          path='/client/login'
-          element={
-            <AuthRoute>
-              <Login />
-            </AuthRoute>
-          }
-        />
-        <Route
-          path='/client/welcome'
-          element={
-            <AuthRoute>
-              <WelcomePage />
-            </AuthRoute>
-          }
-        />
+        {/* Protected routes can be added here */}
+        {/* Client routes */}
         <Route
           path='/client/onboarding'
           element={
-            <AuthRoute>
-              <OnboardingPage />
-            </AuthRoute>
+            // <ProtectedRoute userType='client'>
+            <OnboardingPage />
+            // </ProtectedRoute>
           }
         />
-
-        {/* Client-specific routes - only accessible to clients */}
-
-        {/* Future auth routes - commented until needed */}
-        <Route
-          path='/register'
-          element={
-            <AuthRoute>
-              <CreateAccount />
-            </AuthRoute>
-          }
-        />
-        <Route
-          path='/client/account-setup'
-          element={
-            <ClientRoute>
-              <AccountSetup />
-            </ClientRoute>
-          }
-        />
-        <Route
-          path='/client/account-setup/payment'
-          element={
-            <ClientRoute>
-              <CardDetails />
-            </ClientRoute>
-          }
-        />
-
-        {/* Future protected routes - commented until needed */}
         {/* <Route
-          path='/client/dashboard'
+          path='/client/*'
           element={
-            <ClientRoute requireOnboarding>
+            <ProtectedRoute userType='client' requireOnboarding>
               <ClientDashboard />
-            </ClientRoute>
+            </ProtectedRoute>
           }
         /> */}
 
-        {/* Future artisan routes - commented until needed */}
+        {/* Artisan routes */}
         {/* <Route
           path='/artisan/onboarding'
           element={
-            <ArtisanRoute>
+            <ProtectedRoute userType='artisan'>
               <ArtisanOnboarding />
-            </ArtisanRoute>
+            </ProtectedRoute>
           }
         /> */}
         {/* <Route
-          path='/artisan/dashboard'
+          path='/artisan/*'
           element={
-            <ArtisanRoute requireOnboarding>
+            <ProtectedRoute userType='artisan' requireOnboarding>
               <ArtisanDashboard />
-            </ArtisanRoute>
-          }
-        /> */}
-
-        {/* Future supervisor routes - commented until needed */}
-        {/* <Route
-          path='/supervisor/dashboard'
-          element={
-            <SupervisorRoute requireOnboarding>
-              <SupervisorDashboard />
-            </SupervisorRoute>
-          }
-        /> */}
-
-        {/* Future supplier routes - commented until needed */}
-        {/* <Route
-          path='/supplier/dashboard'
-          element={
-            <SupplierRoute requireOnboarding>
-              <SupplierDashboard />
-            </SupplierRoute>
-          }
-        /> */}
-
-        {/* Future admin routes - commented until needed */}
-        {/* <Route
-          path='/admin/dashboard'
-          element={
-            <AdminRoute requireOnboarding>
-              <AdminDashboard />
-            </AdminRoute>
+            </ProtectedRoute>
           }
         /> */}
 

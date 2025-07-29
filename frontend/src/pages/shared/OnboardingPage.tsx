@@ -50,7 +50,7 @@ export default function OnboardingPage() {
     if (step < slides.length - 1) {
       next()
     } else {
-      navigate("/client/welcome")
+      navigate("/client/login")
     }
   }
 
@@ -73,7 +73,11 @@ export default function OnboardingPage() {
           exit={{ opacity: 0 }}
           className='min-h-screen flex items-center justify-center bg-white'
         >
-          <img src={logo} alt='App Logo' className='w-1/2 h-1/2 mb-4' />
+          {/* Splash Screen Content */}
+          <div className='flex flex-col items-center'>
+            <img src={logo} alt='App Logo' className='w-1/2 h-1/2 mb-4' />
+            {/* <h1 className='text-2xl font-bold text-primary'>MateraPro</h1> */}
+          </div>
         </motion.div>
       ) : (
         <motion.div
@@ -96,13 +100,13 @@ export default function OnboardingPage() {
           </div>
 
           {/* Navigation buttons */}
-          <div className='w-full max-w-md flex justify-between items-center z-20'>
+          <div className='w-full max-w-md flex justify-between items-center mt-8'>
             {step > 0 ? (
               <button
                 onClick={prev}
-                className='hidden md:block font-medium hover:underline text-primary'
+                className='text-lnblack font-medium hover:underline'
               >
-                <FaChevronLeft size={10} />
+                <FaChevronLeft />
               </button>
             ) : (
               <div />
@@ -110,16 +114,11 @@ export default function OnboardingPage() {
 
             <button
               onClick={handleNext}
-              className='text-primary text-sm border-0 hover:text-lnblack transition flex justify-end w-full items-center'
+              className='text-primary px-6 py-2 text-sm border-0 hover:text-lnblack transition'
             >
-              {step < slides.length - 1 ? (
-                <div className='flex gap-1 text-xs items-center'>
-                  Swipe{" "}
-                  <HiOutlineChevronDoubleRight className='mt-0.5' size={12} />
-                </div>
-              ) : (
-                ""
-              )}
+              {step < slides.length - 1
+                ? `Swipe ${(<HiOutlineChevronDoubleRight />)}`
+                : ""}
             </button>
           </div>
 
@@ -132,7 +131,7 @@ export default function OnboardingPage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className='absolute inset-0'
+                className='text-center'
               >
                 <OnboardingSlide
                   title={slides[step].title}
