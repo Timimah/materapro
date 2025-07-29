@@ -16,7 +16,7 @@ interface InputProps {
   onClear?: () => void
 }
 
-const Input = ({
+export const Input = ({
   label,
   placeholder,
   helperText,
