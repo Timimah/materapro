@@ -1,6 +1,6 @@
 import React from "react"
 
-import Heroimg from "@assets/hero.jpg"
+import Heroimg from "@assets/website/hero.jpg"
 
 const Hero = () => {
   return (
@@ -11,7 +11,7 @@ const Hero = () => {
             <img
               src={Heroimg}
               alt='Hero image'
-              className='absolute inset-0 rotate-y-180 h-full object-cover w-full'
+              className='absolute inset-0 h-full object-cover w-full'
             />
             <div className='absolute inset-0 bg-black/60 flex items-center'>
               <div className='w-full h-ful text-center flex flex-col gap-5 justify-center items-center pt-20 md:px-18'>

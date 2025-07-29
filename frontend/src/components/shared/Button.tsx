@@ -1,8 +1,8 @@
-import React from "react"
+import React, { ReactNode } from "react"
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa"
 
 interface ButtonProps {
-  label?: string
+  label?: string | ReactNode
   icon?: "left" | "right" | null
   hasBg?: boolean
   onClick?: () => void

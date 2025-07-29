@@ -23,3 +23,6 @@ dev-dist
 *.njsproj
 *.sln
 *.sw?
+pushboth.sh
+./components/app/messaging.tsx.odt
+

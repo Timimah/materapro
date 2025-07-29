@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Link, useLocation } from "react-router-dom"
-import WhiteLogo from "@assets/logo-white.svg"
-import logo from "@assets/logo.png"
+import WhiteLogo from "@assets/shared/logo-white.svg"
+import logo from "@assets/shared/logo.png"
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai"
 import { motion } from "framer-motion"
 import Button from "../shared/Button"
@@ -18,7 +18,11 @@ const Navbar: React.FC = () => {
   const getLinkStyle = (path: string) => {
     const isActive = location.pathname === path
     return `hover:font-bold transition-colors py-4 text-center ${
-      isActive ? "font-bold text-primary" : "text-lnblack"
+      isActive
+        ? `font-bold ${isHomePage ? "text-white" : "text-primary"}`
+        : isHomePage
+        ? "text-white"
+        : "text-lnblack"
     }`
   }
 
@@ -44,7 +48,7 @@ const Navbar: React.FC = () => {
         )}
       </Link>
       {/* Navigation Links */}
-      <div className='hidden md:flex items-center w-1/2 justify-center'>
+      <div className='hidden md:flex items-center w-1/2 justify-center '>
         <Link to='/' className={`${getLinkStyle("/")} w-1/6`}>
           Home
         </Link>
@@ -56,7 +60,11 @@ const Navbar: React.FC = () => {
         </Link>
       </div>
       <div className='hidden md:flex w-fit'>
-        <Button label='Download app' className='bg-primary' hasBg />
+        <Button
+          label={<Link to='/client/onboarding'>Download app</Link>}
+          className='bg-primary'
+          hasBg
+        />
       </div>
       {/* Mobile menu button */}
       <div
@@ -103,7 +111,11 @@ const Navbar: React.FC = () => {
         >
           Contact us
         </Link>
-        <Button label='Download app' className='bg-primary w-3/4' hasBg />
+        <Button
+          label={<Link to='/client/onboarding'>Download app</Link>}
+          className='bg-primary w-3/4'
+          hasBg
+        />
       </motion.div>
     </nav>
   )

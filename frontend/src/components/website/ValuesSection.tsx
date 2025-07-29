@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
-import value from "@assets/about3.jpeg"
+import value from "@assets/website/about3.jpeg"
 
 const values = [
   {

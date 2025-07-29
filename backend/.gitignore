@@ -1,0 +1,23 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+
+# Django
+db.sqlite3
+*.log
+
+# Environment variables
+.env
+
+# IDEs/editors
+.vscode/
+.idea/
+
+# Test related
+.coverage
+
+# System
+.DS_Store
