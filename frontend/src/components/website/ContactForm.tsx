@@ -13,8 +13,11 @@ const ContactForm = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
 
+  // Updated to handle all form element types
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
@@ -151,7 +154,7 @@ const ContactForm = () => {
           label={isSubmitting ? "Sending..." : "Send Message"}
           className='bg-primary w-full md:w-1/2 text-white'
           hasBg
-          // disabled={isSubmitting}
+          disabled={isSubmitting}
         />
       </div>
     </form>
