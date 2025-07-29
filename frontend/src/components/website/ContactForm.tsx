@@ -149,7 +149,7 @@ const ContactForm = () => {
       <div className='md:w-full flex justify-center py-10'>
         <Button
           label={isSubmitting ? "Sending..." : "Send Message"}
-          className='bg-primary w-full md:w-1/2'
+          className='bg-primary w-full md:w-1/2 text-white'
           hasBg
           // disabled={isSubmitting}
         />

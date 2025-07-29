@@ -1,7 +1,8 @@
-import React, { ReactNode } from "react"
+// components/shared/Button.tsx
+import React, { ReactNode, ButtonHTMLAttributes } from "react"
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa"
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label?: string | ReactNode
   icon?: "left" | "right" | null
   hasBg?: boolean
@@ -9,6 +10,9 @@ interface ButtonProps {
   className?: string
   isToggle?: boolean
   isActive?: boolean
+  textColor?: string
+  bgColor?: string
+  disabled?: boolean
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -19,18 +23,32 @@ const Button: React.FC<ButtonProps> = ({
   className = "",
   isToggle = false,
   isActive = false,
+  disabled = false,
+  textColor,
+  bgColor,
+  type = "button",
+  ...props
 }) => {
   const baseStyles =
-    "p-3 rounded-md text-sm text-center flex justify-center font-semibold transition-all"
+    "p-3 rounded-md text-sm text-center flex justify-center font-semibold transition-all cursor-pointer"
+
   const bgStyles = hasBg
-    ? "bg-blue-500 text-white hover:bg-blue-600"
-    : "border border-gray-300 text-gray-700 hover:bg-gray-100"
-  const activeStyles = isToggle && isActive ? "bg-green-500 text-white" : ""
+    ? `${bgColor || "bg-primary"} ${textColor || "text-white"} hover:opacity-80`
+    : "border border-gray text-gray hover:bg-gray"
+
+  const activeStyles = isToggle && isActive ? "bg-green text-white" : ""
+
+  const disabledStyles = disabled
+    ? "opacity-50 cursor-not-allowed hover:opacity-50"
+    : ""
 
   return (
     <button
-      className={`${baseStyles} ${bgStyles} ${activeStyles} ${className} flex items-center space-x-2`}
-      onClick={onClick}
+      type={type}
+      className={`${baseStyles} ${bgStyles} ${activeStyles} ${disabledStyles} ${className} flex items-center space-x-2`}
+      onClick={disabled ? undefined : onClick}
+      disabled={disabled}
+      {...props}
     >
       {icon === "left" && <FaArrowLeft className='h-4 w-4' />}
       {label && <span>{label}</span>}
